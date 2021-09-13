@@ -18,6 +18,8 @@ def checkout(skus):
                    "D": 0}
     total_cost = 0
     for char in skus:
+        if char not in ["A", "B", "C", "D"]:
+            return -1
         if sku_values.get(char):
             occurrences[char] = occurrences[char] + 1
             total_cost += sku_values.get(char)
@@ -27,6 +29,7 @@ def checkout(skus):
         total_cost -= 15 * floor(occurrences["B"] / 2)
 
     return total_cost
+
 
 
 
