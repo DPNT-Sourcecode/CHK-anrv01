@@ -29,8 +29,3 @@ def checkout(skus):
         total_cost -= 15 * floor(occurrences["B"] / 2)
 
     return total_cost
-
-
-
-
-
