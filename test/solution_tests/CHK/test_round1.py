@@ -16,4 +16,3 @@ class Test:
         input_skus = "AABAB"
         total_value = checkout(input_skus)
         assert total_value == 175
-
