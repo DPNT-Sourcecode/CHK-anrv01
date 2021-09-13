@@ -22,11 +22,12 @@ def checkout(skus):
             occurrences[char] = occurrences[char] + 1
             total_cost += sku_values.get(char)
     if occurrences["A"] > 2:
-        total_cost -= 20 * floor(occurrences["A"] % 3)
+        total_cost -= 20 * floor(occurrences["A"] / 3)
     if occurrences["B"] > 1:
-        total_cost -= 15 * floor(occurrences["B"] % 2)
+        total_cost -= 15 * floor(occurrences["B"] / 2)
 
     return total_cost
+
 
 
 
