@@ -6,7 +6,7 @@ from math import floor
 
 
 def apply_discount(sku, occurrence_data, number_required, discount_applied_per_offer, total_cost):
-    print(sku, number_required, total_cost)
+    print(sku, occurrence_data, number_required, total_cost)
     if occurrence_data[sku] % number_required >= 1:
         total_discount = discount_applied_per_offer * floor(occurrence_data[sku] / number_required)
         print(total_discount)
@@ -40,6 +40,7 @@ def checkout(skus):
     total_cost, occurrences = apply_discount("B", occurrences, 2, 15, total_cost)
 
     return total_cost
+
 
 
 
