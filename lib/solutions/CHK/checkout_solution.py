@@ -5,6 +5,15 @@
 from math import floor
 
 
+def apply_discount(sku, occurrence_data, number_required, discount_applied_per_offer, total_cost):
+    if occurrence_data[sku] % number_required > 0:
+        total_discount = discount_applied_per_offer * occurrence_data[sku]
+        occurrence_data[sku] = occurrence_data[sku] - number_required * occurrence_data[sku] % number_required
+        return total_cost - total_discount, occurrence_data
+    else:
+        return 0
+
+
 def checkout(skus):
     if not isinstance(skus, str):
         return -1
@@ -23,9 +32,10 @@ def checkout(skus):
         if sku_values.get(char):
             occurrences[char] = occurrences[char] + 1
             total_cost += sku_values.get(char)
-    if occurrences["A"] > 2:
-        total_cost -= 20 * floor(occurrences["A"] / 3)
-    if occurrences["B"] > 1:
-        total_cost -= 15 * floor(occurrences["B"] / 2)
+
+    total_cost, occurrences = apply_discount("A", occurrences, 5, 50, total_cost)
+    total_cost, occurrences = apply_discount("A", occurrences, 3, 20, total_cost)
+    total_cost, occurrences = apply_discount("B", occurrences, 2, 15, total_cost)
 
     return total_cost
+

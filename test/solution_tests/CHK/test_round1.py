@@ -3,7 +3,7 @@ from lib.solutions.CHK.checkout_solution import checkout
 
 class Test:
     def test_read_functionality(self):
-        input_skus = "A B CDAD,C"
+        input_skus = "ABCDADC"
         total_value = checkout(input_skus)
         assert total_value == 200
 
@@ -13,6 +13,7 @@ class Test:
         assert total_value == -1
 
     def test_special_offer(self):
-        input_skus = "AABA, B"
+        input_skus = "AABAB"
         total_value = checkout(input_skus)
         assert total_value == 175
+
