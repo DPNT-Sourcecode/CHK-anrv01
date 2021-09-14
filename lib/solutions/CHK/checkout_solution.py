@@ -2,6 +2,7 @@
 
 # noinspection PyUnusedLocal
 # skus = unicode string
+import importlib.resources
 import json
 from math import floor
 
@@ -18,7 +19,7 @@ def apply_discount(sku, occurrence_data, number_required, discount_applied_per_o
 def checkout(skus) -> int:
     if not isinstance(skus, str):
         return -1
-    with open("sku_items_and_prices.json") as sku_data:
+    with importlib.resources.open_text("sku_data", "sku_items_and_prices.json") as sku_data:
         sku_values = json.load(sku_data)
     occurrences = {"A": 0,
                    "B": 0,
@@ -46,3 +47,4 @@ def checkout(skus) -> int:
     total_cost, occurrences = apply_discount("F", occurrences, 3, 10, total_cost)
 
     return total_cost
+
