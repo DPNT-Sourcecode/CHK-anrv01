@@ -16,3 +16,7 @@ class Test:
         input_skus = "AABAB"
         total_value = checkout(input_skus)
         assert total_value == 175
+
+    def test_get_one_free(self):
+        input_skus = ""
+
