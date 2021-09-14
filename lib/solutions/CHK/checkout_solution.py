@@ -39,10 +39,13 @@ def checkout(skus):
     total_cost, occurrences = apply_discount("A", occurrences, 3, 20, total_cost)
     total_cost, occurrences = apply_discount("B", occurrences, 2, 15, total_cost)
 
-    if occurrences["E"] >= 2 and occurrences["B"] >= 1:
-        total_cost, occurrences = apply_discount("E", occurrences, 2, 30/(occurrences["E"]/2), total_cost)
+    for item in range(occurrences["B"]):
+        if occurrences["B"] >= 2:
+            occurrences["E"] -= 2
+            total_cost -= 30
 
     return total_cost
+
 
 
 
