@@ -20,11 +20,13 @@ def checkout(skus):
     sku_values = {"A": 50,
                   "B": 30,
                   "C": 20,
-                  "D": 15}
+                  "D": 15,
+                  "E": 40}
     occurrences = {"A": 0,
                    "B": 0,
                    "C": 0,
-                   "D": 0}
+                   "D": 0,
+                   "E": 0}
     total_cost = 0
     for char in skus:
         if char not in sku_values.keys():
@@ -37,5 +39,10 @@ def checkout(skus):
     total_cost, occurrences = apply_discount("A", occurrences, 3, 20, total_cost)
     total_cost, occurrences = apply_discount("B", occurrences, 2, 15, total_cost)
 
+    if occurrences["E"] >= 2 and occurrences["B"] >= 1:
+        for item in range(occurrences["B"]):
+            total_cost, occurrences = apply_discount("E", occurrences, 2, 30, total_cost)
+
     return total_cost
+
 
