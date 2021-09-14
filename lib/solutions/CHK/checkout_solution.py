@@ -40,7 +40,3 @@ def checkout(skus):
     total_cost, occurrences = apply_discount("B", occurrences, 2, 15, total_cost)
 
     return total_cost
-
-
-
-
