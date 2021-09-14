@@ -1,4 +1,5 @@
 from lib.solutions.CHK.checkout_solution import checkout
+import string
 
 
 class Test:
@@ -36,3 +37,7 @@ class Test:
         input_skus = "VVV"
         total_value = checkout(input_skus)
         assert total_value == 130
+
+    def test_each_sku_added(self):
+        for char in string.ascii_uppercase[:]
+
