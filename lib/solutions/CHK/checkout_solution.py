@@ -19,7 +19,7 @@ def apply_discount(sku, occurrence_data, number_required, discount_applied_per_o
 def checkout(skus) -> int:
     if not isinstance(skus, str):
         return -1
-    with importlib.resources.open_text("sku_data", "sku_items_and_prices.json") as sku_data:
+    with importlib.resources.open_text("lib.solutions.CHK.sku_data", "sku_items_and_prices.json") as sku_data:
         sku_values = json.load(sku_data)
     occurrences = {"A": 0,
                    "B": 0,
