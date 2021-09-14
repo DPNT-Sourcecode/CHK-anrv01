@@ -21,12 +21,8 @@ def checkout(skus) -> int:
         return -1
     with importlib.resources.open_text("lib.solutions.CHK.sku_data", "sku_items_and_prices.json") as sku_data:
         sku_values = json.load(sku_data)
-    occurrences = {"A": 0,
-                   "B": 0,
-                   "C": 0,
-                   "D": 0,
-                   "E": 0,
-                   "F": 0}
+    occurrences = {sku: 0 for sku in sku_values}
+
     total_cost = 0
     for char in skus:
         if char not in sku_values.keys():
@@ -47,4 +43,5 @@ def checkout(skus) -> int:
     total_cost, occurrences = apply_discount("F", occurrences, 3, 10, total_cost)
 
     return total_cost
+
 
