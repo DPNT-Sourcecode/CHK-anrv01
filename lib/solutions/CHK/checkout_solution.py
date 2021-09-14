@@ -14,7 +14,7 @@ def apply_discount(sku, occurrence_data, number_required, discount_applied_per_o
         return total_cost, occurrence_data
 
 
-def checkout(skus):
+def checkout(skus) -> int:
     if not isinstance(skus, str):
         return -1
     sku_values = {"A": 50,
@@ -45,3 +45,4 @@ def checkout(skus):
     total_cost, occurrences = apply_discount("B", occurrences, 2, 15, total_cost)
 
     return total_cost
+
