@@ -22,4 +22,9 @@ class Test:
         total_value = checkout(input_skus)
         assert total_value == 160
 
+    def test_get_3_free(self):
+        input_skus = "EEBEEBEEB"
+        total_value = checkout(input_skus)
+        assert total_value == 240
+
 
