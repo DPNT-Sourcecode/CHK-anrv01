@@ -26,3 +26,9 @@ class Test:
         input_skus = "EEBEEBEEB"
         total_value = checkout(input_skus)
         assert total_value == 240
+
+    def test_5_a(self):
+        input_skus = "AAAAA"
+        total_value = checkout(input_skus)
+        assert total_value == 200
+
