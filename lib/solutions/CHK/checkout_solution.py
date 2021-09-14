@@ -17,12 +17,7 @@ def apply_discount(sku, occurrence_data, number_required, discount_applied_per_o
 def checkout(skus) -> int:
     if not isinstance(skus, str):
         return -1
-    sku_values = {"A": 50,
-                  "B": 30,
-                  "C": 20,
-                  "D": 15,
-                  "E": 40,
-                  "F": 10}
+    sku_values = json.loads()
     occurrences = {"A": 0,
                    "B": 0,
                    "C": 0,
