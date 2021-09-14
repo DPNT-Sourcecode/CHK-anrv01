@@ -21,12 +21,14 @@ def checkout(skus) -> int:
                   "B": 30,
                   "C": 20,
                   "D": 15,
-                  "E": 40}
+                  "E": 40,
+                  "F": 10}
     occurrences = {"A": 0,
                    "B": 0,
                    "C": 0,
                    "D": 0,
-                   "E": 0}
+                   "E": 0,
+                   "F": 0}
     total_cost = 0
     for char in skus:
         if char not in sku_values.keys():
@@ -35,6 +37,7 @@ def checkout(skus) -> int:
             occurrences[char] = occurrences[char] + 1
             total_cost += sku_values.get(char)
 
+    # Discounts applied in priority order (i.e. 'larger' discounts come first)
     total_cost, occurrences = apply_discount("A", occurrences, 5, 50, total_cost)
     total_cost, occurrences = apply_discount("A", occurrences, 3, 20, total_cost)
     for item in range(occurrences["B"]):
@@ -43,7 +46,9 @@ def checkout(skus) -> int:
             occurrences["B"] -= 1
             total_cost -= 30
     total_cost, occurrences = apply_discount("B", occurrences, 2, 15, total_cost)
+    total_cost, occurrences = apply_discount("F", occurrences, 3, 10, total_cost)
 
     return total_cost
+
 
 
