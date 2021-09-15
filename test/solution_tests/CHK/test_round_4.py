@@ -9,7 +9,7 @@ class Test:
     def test_k_functionality(self):
         input_skus = "KK"
         total_value = checkout(input_skus)
-        assert total_value == 150
+        assert total_value == 120
 
     def test_n_functionality(self):
         input_skus = "NNNM"
@@ -47,3 +47,4 @@ class Test:
         for char in string.ascii_uppercase:
             total_value = checkout(char)
             assert total_value == sku_values[char]
+
