@@ -8,6 +8,7 @@ from math import floor
 
 
 def buy_any_of_group_discount(occurrence_data, sku_values, number_required, total_cost):
+    """Applies 'buy any of the following SKUs' group offer"""
     # ordered highest cost first
     group_discount_skus = ["Z", "T", "S", "Y", "X"]
     current_count = 0
@@ -16,11 +17,8 @@ def buy_any_of_group_discount(occurrence_data, sku_values, number_required, tota
     number_of_discounts_applied = 0
     for index, sku in enumerate(group_discount_skus):
         current_count += occurrence_data.get(sku)
-        print(occurrence_data.get(sku))
         current_discount += sku_values.get(sku) * occurrence_data.get(sku)
-        print(current_discount)
         if current_count >= number_required:
-            print(sku)
             difference = current_count - number_required
             occurrence_data[sku] = occurrence_data[sku] - difference
             for previous_sku in group_discount_skus[:index]:
@@ -37,6 +35,7 @@ def buy_any_of_group_discount(occurrence_data, sku_values, number_required, tota
 
 def buy_some_get_one_free(sku_of_free_item, sku_of_dependent_item, occurrence_data, number_required, discount,
                           total_cost):
+    """Applies buy a number of a given SKU and get one free offer"""
     for item in range(occurrence_data[sku_of_free_item]):
         if occurrence_data[sku_of_dependent_item] >= number_required:
             occurrence_data[sku_of_dependent_item] -= number_required
@@ -46,6 +45,7 @@ def buy_some_get_one_free(sku_of_free_item, sku_of_dependent_item, occurrence_da
 
 
 def apply_discount(sku, occurrence_data, number_required, discount_applied_per_offer, total_cost):
+    """Applies generic discount offer"""
     if occurrence_data[sku] / number_required >= 1:
         total_discount = discount_applied_per_offer * floor(occurrence_data[sku] / number_required)
         occurrence_data[sku] = occurrence_data[sku] - number_required * floor(occurrence_data[sku] / number_required)
@@ -88,6 +88,7 @@ def checkout(skus) -> int:
     total_cost, occurrences = apply_discount("V", occurrences, 2, 10, total_cost)
 
     return total_cost
+
 
 
 
