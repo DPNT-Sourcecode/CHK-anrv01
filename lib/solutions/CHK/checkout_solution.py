@@ -34,7 +34,7 @@ def buy_any_of_group_discount(occurrence_data, sku_values, number_required, tota
             total_discount += current_discount
             current_discount = 0
             number_of_discounts_applied += 1
-
+    print(number_of_discounts_applied)
     total_discount_for_group_offer_price = total_discount - (45 * number_of_discounts_applied)
 
     return total_cost - total_discount_for_group_offer_price, occurrence_data
@@ -95,4 +95,5 @@ def checkout(skus) -> int:
     total_cost, occurrences = apply_discount("V", occurrences, 2, 10, total_cost)
 
     return total_cost
+
 
