@@ -47,4 +47,3 @@ class Test:
         for char in string.ascii_uppercase:
             total_value = checkout(char)
             assert total_value == sku_values[char]
-
