@@ -10,7 +10,7 @@ class Test:
     def test_group_discount_buy_7(self):
         input_skus = "XYYXSTS"
         total_value = checkout(input_skus)
-        assert total_value == 90
+        assert total_value == 107
 
     def test_group_discount_only_2_discounted(self):
         input_skus = "XAY"
@@ -21,5 +21,6 @@ class Test:
         input_skus = "SSSZ"
         total_value = checkout(input_skus)
         assert total_value == 65
+
 
 
