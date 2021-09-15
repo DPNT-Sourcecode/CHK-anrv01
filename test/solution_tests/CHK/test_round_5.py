@@ -22,5 +22,11 @@ class Test:
         total_value = checkout(input_skus)
         assert total_value == 65
 
+    def test_group_discount_4_all_discounted(self):
+        input_skus = "STXSTX"
+        total_value = checkout(input_skus)
+        assert total_value == 90
+
+
 
 
