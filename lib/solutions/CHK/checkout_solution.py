@@ -7,9 +7,30 @@ import json
 from math import floor
 
 
+def buy_any_of_group_discount(occurrence_data, sku_values, number_required, total_cost):
+    # ordered highest cost first
+    group_discount_skus = ["Z", "T", "S", "Y", "X"]
+    current_count = 0
+    current_discount = 0
+    total_discount = 0
+    for index, sku in enumerate(group_discount_skus):
+        current_count += occurrence_data.get(sku)
+        current_discount = sku_values.get(sku) * occurrence_data.get(sku)
+        if current_count >= number_required:
+            difference = current_count - number_required
+            occurrence_data[sku] = occurrence_data[sku] - difference
+            for previous_sku in group_discount_skus[:index]:
+                print(previous_sku)
+                occurrence_data[previous_sku] = 0
+            current_count = 0
+            total_discount += current_discount
+            current_discount = 0
+
+    return total_cost - total_discount, occurrence_data
+
+
 def buy_some_get_one_free(sku_of_free_item, sku_of_dependent_item, occurrence_data, number_required, discount,
                           total_cost):
-
     for item in range(occurrence_data[sku_of_free_item]):
         if occurrence_data[sku_of_dependent_item] >= number_required:
             occurrence_data[sku_of_dependent_item] -= number_required
@@ -43,6 +64,7 @@ def checkout(skus) -> int:
             total_cost += sku_values.get(char)
 
     # Discounts applied in priority order (i.e. 'larger' discounts come first)
+    total_cost, occurrences = buy_any_of_group_discount(occurrences, sku_values, 3, total_cost)
     total_cost, occurrences = apply_discount("A", occurrences, 5, 50, total_cost)
     total_cost, occurrences = apply_discount("A", occurrences, 3, 20, total_cost)
     total_cost, occurrences = buy_some_get_one_free("B", "E", occurrences, 2, 30, total_cost)
@@ -60,3 +82,4 @@ def checkout(skus) -> int:
     total_cost, occurrences = apply_discount("V", occurrences, 2, 10, total_cost)
 
     return total_cost
+
