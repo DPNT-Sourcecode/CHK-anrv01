@@ -13,6 +13,7 @@ def buy_any_of_group_discount(occurrence_data, sku_values, number_required, tota
     current_count = 0
     current_discount = 0
     total_discount = 0
+    number_of_discounts_applied = 0
     for index, sku in enumerate(group_discount_skus):
         current_count += occurrence_data.get(sku)
         print(occurrence_data.get(sku))
@@ -27,8 +28,11 @@ def buy_any_of_group_discount(occurrence_data, sku_values, number_required, tota
             current_count = 0
             total_discount += current_discount
             current_discount = 0
+            number_of_discounts_applied += 1
 
-    return total_cost - total_discount, occurrence_data
+    total_discount_for_group_offer_price = total_discount - (45 * number_of_discounts_applied)
+
+    return total_cost - total_discount_for_group_offer_price, occurrence_data
 
 
 def buy_some_get_one_free(sku_of_free_item, sku_of_dependent_item, occurrence_data, number_required, discount,
@@ -84,6 +88,7 @@ def checkout(skus) -> int:
     total_cost, occurrences = apply_discount("V", occurrences, 2, 10, total_cost)
 
     return total_cost
+
 
 
 
