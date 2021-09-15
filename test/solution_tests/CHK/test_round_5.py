@@ -27,6 +27,3 @@ class Test:
         total_value = checkout(input_skus)
         assert total_value == 90
 
-
-
-

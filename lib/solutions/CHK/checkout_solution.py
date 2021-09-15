@@ -14,13 +14,17 @@ def buy_any_of_group_discount(occurrence_data, sku_values, number_required, tota
     current_count = 0
     current_discount = 0
     total_discount = 0
+    difference = 0
     number_of_discounts_applied = 0
     for index, sku in enumerate(group_discount_skus):
         current_count += occurrence_data.get(sku)
+        if difference != 0:
+            print(group_discount_skus[index-1])
+            current_discount += sku_values.get(group_discount_skus[index-1]) * difference
+            difference = 0
         current_discount += sku_values.get(sku) * occurrence_data.get(sku)
         if current_count >= number_required:
             difference = current_count - number_required
-            print(difference)
             current_discount -= sku_values.get(sku) * difference
             occurrence_data[sku] = occurrence_data[sku] - difference
             for previous_sku in group_discount_skus[:index]:
@@ -90,8 +94,3 @@ def checkout(skus) -> int:
     total_cost, occurrences = apply_discount("V", occurrences, 2, 10, total_cost)
 
     return total_cost
-
-
-
-
-
